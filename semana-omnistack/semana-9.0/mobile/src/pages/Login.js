@@ -13,8 +13,10 @@ export default function Login({ navigation }) {
         AsyncStorage.getItem('user').then(user => {
             if (user) {
                 navigation.navigate('List');
+                console.log('user', user);
             }
         });
+        AsyncStorage.clear();
     }, []);
 
     const handleSubmit = async () => {
@@ -30,7 +32,7 @@ export default function Login({ navigation }) {
     }
 
     return (
-        <KeyboardAvoidingView enabled={Platform.OS === 'ios'} ehavior="padding" style={styles.container}>
+        <KeyboardAvoidingView enabled={Platform.OS === 'ios'} behavior="padding" style={styles.container}>
             <Image source={logo} />
 
             <View style={styles.form}>
@@ -92,7 +94,7 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#444',
         height: 44,
-        marginBottom: 20,
+        marginBottom: 20,                           
         borderRadius: 14,
     },
 
