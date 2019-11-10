@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { withNavigation } from 'react-navigation';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
+import logo from '../assets/logo.png';
 import api from '../services/api'
 
 function SpotList({ tech, navigation }) {
@@ -35,10 +35,10 @@ function SpotList({ tech, navigation }) {
                 showsHorizontalScrollIndicator={false}
                 renderItem={({ item }) => (
                     <View style={styles.listItem}>
-                        <Image style={styles.thumbnail} source={{ uri: item.thumbnail_url }} />
+                        <Image style={styles.thumbnail} source={{uri: item.thumbnail}} />
                         <Text style={styles.company}>{item.company}</Text>
                         <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>
-                        <TouchableOpacity onPress={() => handleNavigate(item.id)} style={styles.button}>
+                        <TouchableOpacity onPress={() => handleNavigate(item._id)} style={styles.button}>
                             <Text style={styles.buttonText}>Solicitar Reserva</Text>
                         </TouchableOpacity>
                     </View>

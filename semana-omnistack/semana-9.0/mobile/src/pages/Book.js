@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity, AsyncStorage } from 'react-native';
+import React, { useState } from 'react';
+import { SafeAreaView, StyleSheet, TextInput, Text, TouchableOpacity, AsyncStorage, Alert } from 'react-native';
 
 import api from '../services/api';
 
@@ -8,9 +8,9 @@ export default function Book({ navigation }) {
     const id = navigation.getParam('id');
 
     const handleSubmit = async () => {
-        const user_id = AsyncStorage.getItem('user')
+        const user_id = await AsyncStorage.getItem('user')
 
-        await api.post(`/spots/ ${id}/bookings`, date, { headers: { user_id } });
+        await api.post(`/spots/${id}/bookings`, { date }, { headers: { user_id } });
 
         Alert.alert('Solicitação de reserva enviada.');
 
@@ -26,7 +26,7 @@ export default function Book({ navigation }) {
             <Text style={styles.label}>DATA DE INTERESSE *</Text>
             <TextInput
                 style={styles.input}
-                placeholder="__/__/____"
+                placeholder="Escolha uma Data"
                 placeholderTextColor="#999"
                 autoCapitalize="words"
                 autoCorrect={false}

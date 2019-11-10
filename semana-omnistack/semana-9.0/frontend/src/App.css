@@ -64,7 +64,7 @@ body, input, button{
 
 .content form input {
   margin-bottom: 20px;
-  border: 1px solid #ddd;
+  border: 2px solid #DDD;
   border-radius: 14px;
   height: 45px;
   padding: 0 15px;

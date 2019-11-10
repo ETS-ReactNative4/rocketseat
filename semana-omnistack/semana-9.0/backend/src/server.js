@@ -14,15 +14,27 @@ const app = express();
 const server = http.Server(app);
 const io = socketio(server);
 
-io.on('connection', socket => {
-    console.log('Usuário conectado', socket.id);
-});
 
 mongoose.connect('mongodb+srv://omnistack:omnistack@omnistack-gqyfj.mongodb.net/semana09?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
 
+
+const connectedUsers = {}; // On Production use << Redis >>
+
+io.on('connection', socket => {
+    const { user_id } = socket.handshake.query;
+
+    connectedUsers[user_id] = socket.id;
+});
+
+app.use((req, res, next) => {
+    req.io = io;
+    req.connectedUsers = connectedUsers;
+
+    return next();
+});
 
 app.use(cors());
 app.use(express.json());
