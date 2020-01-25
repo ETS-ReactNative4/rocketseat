@@ -1,27 +1,17 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from 'react-native'
 
-export default function App() {
+import Routes from './src/routes';
+
+const App = () => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Semana Omnistack!!!</Text>
-    </View>
+    <>
+      <StatusBar
+        barStyle='light-content'
+        backgroundColor='#7D40E7' />
+      <Routes />
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#7159c1',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  text: {
-    color: '#FFFFFF',
-    fontSize: 32,
-    fontWeight: 'bold',
-    alignItems: 'center',
-    justifyContent: 'center',
-
-  }
-});
+export default App;
