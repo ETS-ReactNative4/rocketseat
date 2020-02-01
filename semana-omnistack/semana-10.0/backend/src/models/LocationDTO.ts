@@ -1,3 +1,5 @@
+import { ILocationDTO } from "../interfaces/ILocationDTO";
+
 import {
     Table,
     Column,
@@ -5,7 +7,7 @@ import {
     PrimaryKey,
     DataType
 } from "sequelize-typescript";
-import { ILocationDTO } from "../interfaces/ILocationDTO";
+import * as uuid from "uuid";
 
 @Table({tableName: 'locations', schema: 'omnistack10'})
 class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
@@ -13,7 +15,8 @@ class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
     @Column({
         field: 'id',
         type: DataType.UUIDV4,
-        allowNull: false 
+        allowNull: false,
+        defaultValue: uuid.v4(), 
     })
     id!: string
 

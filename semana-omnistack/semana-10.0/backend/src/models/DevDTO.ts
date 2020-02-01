@@ -1,3 +1,6 @@
+import { IDevDTO } from "../interfaces/IDevDTO";
+import LocationDTO from "./LocationDTO";
+
 import {
     Model,
     Column,
@@ -6,17 +9,17 @@ import {
     PrimaryKey,
     ForeignKey
 } from "sequelize-typescript";
-import { IDevDTO } from "../interfaces/IDevDTO";
-import  LocationDTO from "./LocationDTO";
+import * as uuid from "uuid";
 
 @Table({ tableName: 'devs', schema: 'omnistack10' })
 class DevDTO extends Model implements IDevDTO {
-    
+
     @PrimaryKey
     @Column({
-        field:'id',
+        field: 'id',
         type: DataType.UUIDV4,
-        allowNull: false
+        allowNull: false,
+        defaultValue: uuid.v4(),
     })
     id!: string;
 
@@ -26,14 +29,14 @@ class DevDTO extends Model implements IDevDTO {
         allowNull: false
     })
     name!: string;
-    
+
     @Column({
         field: 'github_username',
         type: DataType.STRING(128),
         allowNull: false
     })
     github_username!: string;
- 
+
     @Column({
         field: 'biography',
         type: DataType.STRING(256),
@@ -58,9 +61,8 @@ class DevDTO extends Model implements IDevDTO {
     @ForeignKey(() => LocationDTO)
     @Column({
         field: 'location_id',
-        unique: 'location_id'
     })
     location!: LocationDTO;
-} 
+}
 
 export default DevDTO;
