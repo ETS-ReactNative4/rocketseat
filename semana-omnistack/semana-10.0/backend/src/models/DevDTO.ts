@@ -53,7 +53,7 @@ class DevDTO extends Model implements IDevDTO {
 
     @Column({
         field: 'technologies',
-        type: DataType.ARRAY,
+        type: DataType.ARRAY(DataType.STRING),
         allowNull: false
     })
     techs!: string[];
@@ -61,8 +61,9 @@ class DevDTO extends Model implements IDevDTO {
     @ForeignKey(() => LocationDTO)
     @Column({
         field: 'location_id',
+        type: DataType.UUIDV4
     })
-    location!: LocationDTO;
+    location!: string;
 }
 
 export default DevDTO;
