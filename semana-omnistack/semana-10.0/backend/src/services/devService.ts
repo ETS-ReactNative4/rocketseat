@@ -7,15 +7,17 @@ export const insertDeveloper = async (devInformation: IDevDTO, locationInformati
     try {
 
         const locationData: LocationDTO = await LocationDTO.create({
-            locationInformation
+            longitude: locationInformation.longitude,
+            latitude: locationInformation.latitude,
         });
+        
         const devData: DevDTO = await DevDTO.create({
             name: devInformation.name,
             github_username: devInformation.github_username,
             bio: devInformation.bio,
             avatar_url: devInformation.avatar_url,
             techs: devInformation.techs,
-            location: locationData,
+            location: locationData.id,
         });
 
         if (devData) {

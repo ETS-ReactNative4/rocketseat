@@ -7,22 +7,26 @@ import {
     Table,
     DataType,
     PrimaryKey,
-    ForeignKey
+    ForeignKey,
+    BeforeCreate,
 } from "sequelize-typescript";
 import * as uuid from "uuid";
 
-@Table({ tableName: 'devs', schema: 'omnistack10' })
-class DevDTO extends Model implements IDevDTO {
 
+@Table({
+    tableName: 'devs',
+    schema: 'omnistack10'
+})
+class DevDTO extends Model<DevDTO> implements IDevDTO {
+    
     @PrimaryKey
     @Column({
         field: 'id',
-        type: DataType.UUIDV4,
+        type: DataType.STRING,
         allowNull: false,
-        defaultValue: uuid.v4(),
     })
     id!: string;
-
+    
     @Column({
         field: 'name',
         type: DataType.STRING(128),
@@ -43,27 +47,32 @@ class DevDTO extends Model implements IDevDTO {
         allowNull: false
     })
     bio!: string;
-
+    
     @Column({
         field: 'avatar_url',
         type: DataType.STRING(256),
         allowNull: false
     })
     avatar_url!: string;
-
+    
     @Column({
         field: 'technologies',
         type: DataType.ARRAY(DataType.STRING),
         allowNull: false
     })
     techs!: string[];
-
+    
     @ForeignKey(() => LocationDTO)
     @Column({
         field: 'location_id',
-        type: DataType.UUIDV4
+        type: DataType.STRING
     })
     location!: string;
+    
+    @BeforeCreate
+    static incrementUUID(dev: DevDTO) {
+        dev.id = uuid.v4();
+    }
 }
 
 export default DevDTO;

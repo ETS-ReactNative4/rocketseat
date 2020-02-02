@@ -6,7 +6,6 @@ const PORT = process.env.PORT || "3333";
 (
     async () => {
         try {
-            console.log(sequelize.config);
             await sequelize.sync({ force: false });
         } catch (err) {
             console.log(`[error]: DB_ERROR failed to connect on database: `, err.stack);

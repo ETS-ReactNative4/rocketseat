@@ -5,18 +5,19 @@ import {
     Column,
     Model,
     PrimaryKey,
-    DataType
+    DataType,
+    BeforeCreate
 } from "sequelize-typescript";
 import * as uuid from "uuid";
 
-@Table({tableName: 'locations', schema: 'omnistack10'})
+@Table({ tableName: 'locations', schema: 'omnistack10' })
 class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
+
     @PrimaryKey
     @Column({
         field: 'id',
-        type: DataType.UUIDV4,
+        type: DataType.STRING,
         allowNull: false,
-        defaultValue: uuid.v4(), 
     })
     id!: string
 
@@ -26,13 +27,18 @@ class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
         allowNull: false
     })
     longitude!: string;
-    
+
     @Column({
         field: 'latitude',
         type: DataType.DOUBLE,
         allowNull: false
     })
     latitude!: string;
+
+    @BeforeCreate
+    static incrementUUID(location: ILocationDTO) {
+        location.id = uuid.v4();
+    }
 }
 
 export default LocationDTO;
