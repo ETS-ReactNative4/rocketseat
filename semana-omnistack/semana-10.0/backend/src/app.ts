@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
-import bodyParser, { json } from "body-parser";
+import bodyParser from "body-parser";
 
-import { routes } from "./routes/routes";
+import * as router from"./routes/routes";
 
 class App {
 
@@ -10,18 +10,18 @@ class App {
 
     constructor() {
         this.app = express();
-        this.expressRoutes();
         this.middleware();
+        this.expressRoutes();
     }
 
     private middleware(): void {
         this.app.use(bodyParser.urlencoded({ extended: true }));
-        this.app.use(json());
-        this.app.use(cors);
+        this.app.use(bodyParser.json());
+        this.app.use(cors());
     }
 
     private expressRoutes(): void {
-        this.app.use("/locations", routes);
+        this.app.use("/locations", router.routes);
     }
     
 

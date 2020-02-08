@@ -42,6 +42,9 @@ export const createDeveloper = async (
 
         const devData = await service.insertDeveloper(devInformation, devLocation);
 
+        if (devData && Array.isArray(devData.errors)){
+            return response.status(500).json({ message: devData.errors });
+        }
         return response.status(201).json(devData);
     } catch (err) {
         console.log(err);
@@ -82,8 +85,18 @@ export const getDevelopersPerLocation = async (
             latitude
         }
 
-        const foundedDevelopers = await service.findDevelopersPerLocation(params);
+        const filters: any = params
 
+        Object.keys(filters).forEach(
+            key => filters[key] === undefined && delete filters[key]);
+
+        const foundedDevelopers = await service.findDevelopersPerLocation(filters);
+
+        if (foundedDevelopers){
+            if (foundedDevelopers === [] ){
+                return response.status(200).json(foundedDevelopers);        
+            }
+        }
         return response.status(200).json(foundedDevelopers.rows);
     } catch (err) {
         console.log(err);
