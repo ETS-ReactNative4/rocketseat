@@ -6,9 +6,11 @@ import {
     Model,
     PrimaryKey,
     DataType,
-    BeforeCreate
+    BeforeCreate,
+    HasOne
 } from "sequelize-typescript";
 import * as uuid from "uuid";
+import DevDTO from "./DevDTO";
 
 @Table({ tableName: 'locations', schema: 'omnistack10' })
 class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
@@ -17,9 +19,9 @@ class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
     @Column({
         field: 'id',
         type: DataType.STRING,
-        allowNull: false,
+        allowNull: true,
     })
-    id!: string
+    id?: string
 
     @Column({
         field: 'longitude',
@@ -34,6 +36,9 @@ class LocationDTO extends Model<LocationDTO> implements ILocationDTO {
         allowNull: false
     })
     latitude!: string;
+
+    @HasOne(() => DevDTO)
+    devs!: DevDTO[];
 
     @BeforeCreate
     static incrementUUID(location: ILocationDTO) {
