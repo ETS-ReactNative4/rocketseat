@@ -49,36 +49,35 @@ const Register = () => {
                     Voltar à pagina incial
                     </Link>
                 </section>
-
-                <form onSubmit={handleRegister}>
-                    <input type="text"
-                        placeholder="ONG name"
-                        value={ongName}
-                        onChange={e => setOngName(e.target.value)} />
-
-                    <input type="email"
-                        placeholder="E-mail"
-                        value={email}
-                        onChange={e => setEmail(e.target.value)} />
-                    <input type="text"
-                        placeholder="WhatsApp"
-                        value={whatsApp}
-                        onChange={e => setWhatsApp(e.target.value)} />
-
-                    <div className="input-group" >
+                    <form onSubmit={handleRegister}>
                         <input type="text"
-                            placeholder="City"
-                            value={ongCity}
-                            onChange={e => setOngCity(e.target.value)} />
-                        <input type="text"
-                            placeholder="UF"
-                            style={{ width: 80 }}
-                            value={ongUF}
-                            onChange={e => setOngUF(e.target.value)} />
-                    </div>
+                            placeholder="ONG name"
+                            value={ongName}
+                            onChange={e => setOngName(e.target.value)} />
 
-                    <button className="button"> Register </button>
-                </form>
+                        <input type="email"
+                            placeholder="E-mail"
+                            value={email}
+                            onChange={e => setEmail(e.target.value)} />
+                        <input type="text"
+                            placeholder="WhatsApp"
+                            value={whatsApp}
+                            onChange={e => setWhatsApp(e.target.value)} />
+
+                        <div className="input-group" >
+                            <input type="text"
+                                placeholder="City"
+                                value={ongCity}
+                                onChange={e => setOngCity(e.target.value)} />
+                            <input type="text"
+                                placeholder="UF"
+                                style={{ width: 80 }}
+                                value={ongUF}
+                                onChange={e => setOngUF(e.target.value)} />
+                        </div>
+
+                        <button className="button"> Register </button>
+                    </form>
             </div>
         </div>
     )

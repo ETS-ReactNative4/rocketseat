@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiLogIn } from 'react-icons/fi';
+import ReactCSSTransitionGroup from 'react-addons-transition-group';
 
 import './styles.css'
 import herosImg from '../../assets/heroes.png'
@@ -36,11 +37,16 @@ const Logon = () => {
                         placeholder="Your Identity"
                         value={id}
                         onChange={e => setId(e.target.value)} />
-                    <button className="button" type="submit"> Log In </button>
-                    <Link className="back-link" to="/register">
-                        <FiLogIn size={16} color="#E02041" />
+                    <ReactCSSTransitionGroup
+                        transitionName="fade"
+                        transitionEnterTimeout={500}
+                        transitionLeaveTimeout={200}>
+                        <button className="button" type="submit"> Log In </button>
+                        <Link className="back-link" to="/register">
+                            <FiLogIn size={16} color="#E02041" />
                     Não tenho cadastro
                     </Link>
+                    </ReactCSSTransitionGroup>
                 </form>
             </section>
 
