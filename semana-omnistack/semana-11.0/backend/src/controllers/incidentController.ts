@@ -72,13 +72,21 @@ export const deleteIncident = async (req: Request, res: Response): Promise<Objec
 export const getIncidentsByOng = async (req: Request, res: Response): Promise<Object> => {
     try {
         let ongId = req.headers && req.headers.authorization ? req.headers.authorization : undefined;
+        const params = req.query;
 
         if (typeof ongId === "undefined") {
             return res.status(Constants.HTTP.STATUS.UNAUTHORIZED)
                 .json({ message: 'Unauthorized to access this resource. Check the credentials' });
         }
 
-        const incidentsByOng = await beTheHeroService.getIncidentByOng(ongId);
+        const pagination = {
+            page: params && params.page > 0 ? params.page : Constants.PAGINATION.DEFAULT,
+            limit: Constants.PAGINATION.LIMIT,
+            offSet: Constants.PAGINATION.LIMIT
+        }
+        pagination.offSet = (pagination.page - 1) * pagination.limit;
+
+        const incidentsByOng = await beTheHeroService.getIncidentByOng(ongId, pagination);
 
         return res.status(Constants.HTTP.STATUS.OK).json(incidentsByOng);
     } catch (err) {
