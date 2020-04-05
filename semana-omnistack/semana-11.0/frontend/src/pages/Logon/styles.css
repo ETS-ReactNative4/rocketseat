@@ -1,0 +1,42 @@
+.logon-container {
+    width: 100%;
+    max-width: 1120px;
+    height: 100vh;
+    margin: 0 auto;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logon-container section.form{
+    width: 100%;
+    max-width: 350px;
+    margin: 30px;
+}
+.logon-container section.form form {
+     font-size: 32px;
+     margin-bottom: 32px ;
+}
+
+.logon-container section.form form h1 {
+  margin-bottom: 2px;
+}
+
+.fade-enter {
+  opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.fade-leave {
+  opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
