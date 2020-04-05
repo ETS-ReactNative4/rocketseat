@@ -4,7 +4,7 @@ import { sequelize } from './db';
 (
     async () => {
         try {
-            await sequelize.sync({ force: true });
+            await sequelize.sync({ force: false });
         } catch (error) {
             console.log(`DB_ERROR - failed to connect to database: `, error.message);
         }

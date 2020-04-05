@@ -9,7 +9,7 @@ export const sequelize = new Sequelize({
     password: DB_PASS,
     dialect: "postgres",
     models: [__dirname + '/models/'],
-    logging: false,
+    logging: true,
     define: {
         freezeTableName: false,
         createdAt: false,
