@@ -14,6 +14,7 @@ export const sequelize = new Sequelize({
         freezeTableName: false,
         createdAt: false,
         updatedAt: false,
-        timestamps: false
+        timestamps: false,
+        schema: 'omnistack'
     }
 });

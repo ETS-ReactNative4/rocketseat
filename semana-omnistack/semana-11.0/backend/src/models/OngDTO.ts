@@ -14,7 +14,7 @@ import IncidentDTO from './IncidentsDTO';
 
 @Table({
     tableName: 'ongs',
-    schema: 'omnistack_11'
+    schema: 'omnistack'
 })
 class OngDTO extends Model<OngDTO> implements iOngs {
     @PrimaryKey
@@ -61,8 +61,8 @@ class OngDTO extends Model<OngDTO> implements iOngs {
     whatsApp!: string;
 
     @HasMany(() => IncidentDTO)
-    ongs!: OngDTO[];
-    
+    incidents!: IncidentDTO[];
+
     @BeforeCreate
     static incrementUUID(ong: OngDTO) {
         ong.id = uuid.v4();

@@ -14,13 +14,13 @@ import OngDTO from './OngDTO';
 
 @Table({
     tableName: 'incidents',
-    schema: 'omnistack_11'
+    schema: 'omnistack'
 })
 class IncidentsDTO extends Model<IncidentsDTO> implements iIncidents {
     @PrimaryKey
     @AutoIncrement
     @Column({
-        field: 'incidentId',
+        field: 'incident_id',
         type: DataType.BIGINT,
         allowNull: false
     })
