@@ -79,12 +79,15 @@ export const deleteIncident = async (id: number, ongId: string): Promise<any | u
     }
 }
 
-export const getIncidentByOng = async (ongId: string): Promise<Object | undefined> => {
+export const getIncidentByOng = async (ongId: string, pagination: any): Promise<Object | undefined> => {
     try {
         const result = await IncidentsDTO.findAll({
             where: {
                 ongId
-            }
+            },
+            include: [OngDTO],
+            limit: pagination.limit,
+            offset: pagination.offSet
         });
 
         return result;
