@@ -8,7 +8,7 @@ import styles from './styles';
 import api from '../../services/api';
 
 const Incidents = () => {
-    const [total, setTotal] = useEffect(0);
+    const [total, setTotal] = useState(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [incidents, setIncidents] = useState([]);
