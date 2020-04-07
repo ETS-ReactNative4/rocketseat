@@ -4,7 +4,7 @@ import Constants from 'expo-constants';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 24,
+        paddingHorizontal: 5,
         paddingTop: Constants.statusBarHeight + 20,
     },
     header: {
@@ -38,10 +38,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "#FFF",
         marginBottom: 16,
-        shadowColor: "#000",
-        shadowRadius: 10,
-        shadowOpacity: 1,
-        shadowOffset: { width: 2, height: 1 },
+        shadowColor: '#000000',
+        shadowOpacity: 0.6,
+        elevation: 20,
 
     },
     incidentProperty: {

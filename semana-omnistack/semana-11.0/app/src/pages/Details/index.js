@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, TouchableOpacity } from 'react-native';
+import { View, Text, Image, TouchableOpacity } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { useNavigation, useRoute } from "@react-navigation/native"
 import * as MailComposer from 'expo-mail-composer';
@@ -16,7 +16,7 @@ const Details = () => {
 
     const incident = route.params.incident;
     const getValue = Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(incident.value)
-    const message = `Olá ${incident.name}, estou entrando em contato, pois gostaria de ajudar no caso "${incident.title}" com o valor de ${getValue}`
+    const message = `Olá ${incident.ong.name}, estou entrando em contato, pois gostaria de ajudar no caso "${incident.title}" com o valor de ${getValue}`
 
     const navigateToHome = () => {
         navigation.goBack();
@@ -41,10 +41,10 @@ const Details = () => {
                 <TouchableOpacity onPress={navigateToHome}>
                     <Feather name="arrow-left" size={28} color="#E02041" />
                 </TouchableOpacity>
-
+            </View>
                 <View style={styles.incident}>
                     <Text style={[styles.incidentProperty, { marginTop: 0 }]}>ONG: </Text>
-                    <Text style={styles.incidentValue}>{incident.name} de {incident.city}/{incident.uf}</Text>
+                    <Text style={styles.incidentValue}>{incident.ong.name} de {incident.ong.city}/{incident.ong.uf}</Text>
 
                     <Text style={styles.incidentProperty}>CASO: </Text>
                     <Text style={styles.incidentValue}>{incident.title} </Text>
@@ -70,7 +70,6 @@ const Details = () => {
 
                     </View>
                 </View>
-            </View>
         </View>
     )
 }

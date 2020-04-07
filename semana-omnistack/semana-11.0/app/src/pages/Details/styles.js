@@ -11,18 +11,16 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginTop: 48,
     },
     incident: {
         padding: 24,
         borderRadius: 10,
         backgroundColor: "#FFF",
         marginBottom: 16,
-        shadowColor: "#000",
-        shadowRadius: 10,
-        shadowOpacity: 1,
-        shadowOffset: { width: 2, height: 1 },
-
+        marginTop: 48,
+        shadowColor: '#000000',
+        shadowOpacity: 0.6,
+        elevation: 20,
     },
     incidentProperty: {
         fontSize: 14,
@@ -40,10 +38,9 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         backgroundColor: "#FFF",
         marginBottom: 16,
-        shadowColor: "#000",
-        shadowRadius: 10,
-        shadowOpacity: 1,
-        shadowOffset: { width: 2, height: 1 },
+        shadowColor: '#000000',
+        shadowOpacity: 0.6,
+        elevation: 20,
     },
 
     heroTitle: {
