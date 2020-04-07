@@ -8,11 +8,12 @@ import styles from './styles';
 import api from '../../services/api';
 
 const Incidents = () => {
-    const navigation = useNavigation();
     const [total, setTotal] = useEffect(0);
     const [page, setPage] = useState(1);
     const [loading, setLoading] = useState(false);
     const [incidents, setIncidents] = useState([]);
+    
+    const navigation = useNavigation();
 
     const navigateToDetail = (incident) => {
         navigation.navigate('Detail', { incident });

@@ -79,15 +79,13 @@ export const deleteIncident = async (id: number, ongId: string): Promise<any | u
     }
 }
 
-export const getIncidentByOng = async (ongId: string, pagination: any): Promise<Object | undefined> => {
+export const getIncidentByOng = async (ongId: string): Promise<Object | undefined> => {
     try {
         const result = await IncidentsDTO.findAll({
             where: {
                 ongId
             },
-            include: [OngDTO],
-            limit: pagination.limit,
-            offset: pagination.offSet
+            include: [OngDTO]
         });
 
         return result;
@@ -124,12 +122,12 @@ export const validateIncident = async (id: number, ongId: string): Promise<any> 
                 id
             }
         });
-
-        if (incident?.ongId !== ongId) {
+    
+        if (incident && incident.ongId !== ongId) {
             return { message: 'Unauthorized to delete this resource.', status: 401 }
         }
 
-        return { ongId: incident.ongId };
+        return { ongId: incident && incident.ongId };
     } catch (err) {
         throw new Error('Error while executing query on database');
     }

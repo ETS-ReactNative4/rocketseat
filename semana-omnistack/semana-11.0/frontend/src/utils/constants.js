@@ -6,7 +6,7 @@ const Constants = {
         DESCRIPTION: 'Descreva seu caso detalhadamente para encontrar um herói para resolver isso.'
     },
     PROPS: {
-        BASE_URL: 'localhost:3333/v1'
+        BASE_URL: 'http://localhost:3333/v1'
     }
 }
 

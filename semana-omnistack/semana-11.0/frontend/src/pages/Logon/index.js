@@ -16,13 +16,14 @@ const Logon = () => {
         e.preventDefault()
         const logonData = { id };
         try {
-            const response = await api.post('/sessions', logonData);
-
+            const response = await api.post('/session', logonData);
+            
             localStorage.setItem('ongId', id);
             localStorage.setItem('ongName', response.data.name);
-
+            
             history.push('/profile');
         } catch (err) {
+            console.log(err);
             alert('Falha no login, tente novamente!');
         }
     }

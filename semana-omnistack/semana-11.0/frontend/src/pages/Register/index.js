@@ -10,7 +10,7 @@ import api from '../../services/api';
 const Register = () => {
     const [ongName, setOngName] = useState('');
     const [email, setEmail] = useState('');
-    const [whatsApp, setWhatsApp] = useState('');
+    const [whatsapp, setWhatsApp] = useState('');
     const [ongCity, setOngCity] = useState('');
     const [ongUF, setOngUF] = useState('');
 
@@ -22,7 +22,7 @@ const Register = () => {
         const ongData = {
             name: ongName,
             email,
-            whatsApp,
+            whatsapp,
             city: ongCity,
             uf: ongUF
         };
@@ -61,7 +61,7 @@ const Register = () => {
                             onChange={e => setEmail(e.target.value)} />
                         <input type="text"
                             placeholder="WhatsApp"
-                            value={whatsApp}
+                            value={whatsapp}
                             onChange={e => setWhatsApp(e.target.value)} />
 
                         <div className="input-group" >
