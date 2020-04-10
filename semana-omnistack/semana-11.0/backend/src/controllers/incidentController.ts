@@ -3,6 +3,7 @@ import { Request, Response } from 'express';
 import * as beTheHeroService from '../services/beTheHeroService';
 import Constants from '../utils/Constants';
 import { iIncidents } from '../Interfaces/iIncidents';
+import { validateIncidents } from '../validators/incidentValidation';
 
 export const createIncident = async (req: Request, res: Response): Promise<Object> => {
     try {
@@ -13,16 +14,25 @@ export const createIncident = async (req: Request, res: Response): Promise<Objec
             value: req.body.value,
             ongId: ongId
         }
-
+        
         if (typeof ongId === "undefined") {
             return res.status(Constants.HTTP.STATUS.UNAUTHORIZED)
-                .json({ message: 'Unauthorized to access this resource. Check the credentials' });
+            .json({ message: 'Unauthorized to access this resource. Check the credentials' });
         }
 
-        const incident = await beTheHeroService.insertIncident(body);
+        const incidentValidated: iIncidents = await validateIncidents(body);
+        
+        const incident = await beTheHeroService.insertIncident(incidentValidated);
 
         return res.status(Constants.HTTP.STATUS.OK).json(incident);
     } catch (err) {
+        if (Array.isArray(err && err.details)) {
+            let message: any = [];
+            err.details.forEach((error: any) => {
+                message.push(error.message)
+            });
+            return res.status(Constants.HTTP.STATUS.BAD_REQUEST).json({ message });
+        }
         return res.status(Constants.HTTP.STATUS.INTERNAL_SERVER_ERROR).json({ message: err.message });
     }
 }
@@ -57,7 +67,7 @@ export const deleteIncident = async (req: Request, res: Response): Promise<Objec
                 .json({ message: 'Unauthorized to access this resource. Check the credentials' });
         }
         const result = await beTheHeroService.deleteIncident(Number(incidentId), ongId);
-        
+
         if (result && result.status === Constants.HTTP.STATUS.UNAUTHORIZED) {
             return res.status(result.status).json(result);
         }
@@ -71,7 +81,7 @@ export const deleteIncident = async (req: Request, res: Response): Promise<Objec
 export const getIncidentsByOng = async (req: Request, res: Response): Promise<Object> => {
     try {
         let ongId = req.headers && req.headers.authorization ? req.headers.authorization : undefined;
-        
+
         if (typeof ongId === "undefined") {
             return res.status(Constants.HTTP.STATUS.UNAUTHORIZED)
                 .json({ message: 'Unauthorized to access this resource. Check the credentials' });

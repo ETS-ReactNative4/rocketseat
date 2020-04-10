@@ -2,7 +2,9 @@ import { Request, Response } from 'express'
 
 import { iOngs } from '../Interfaces/iOngs';
 import Constants from '../utils/Constants';
+import { } from "../validators/ongValidation";
 import * as beTheHeroService from '../services/beTheHeroService';
+import { validateOng } from '../validators/ongValidation';
 
 export const createOng = async (req: Request, res: Response): Promise<Object | undefined> => {
     try {
@@ -14,10 +16,19 @@ export const createOng = async (req: Request, res: Response): Promise<Object | u
             uf: req.body.uf
         }
 
-        const response: any = await beTheHeroService.insertOngs(body);
+        const validatedOng = await validateOng(body);
+
+        const response: any = await beTheHeroService.insertOngs(validatedOng);
 
         return res.status(Constants.HTTP.STATUS.OK).json({ id: response.id });
     } catch (err) {
+        if (Array.isArray(err && err.details)) {
+            let message: any = [];
+            err.details.forEach((error: any) => {
+                message.push(error.message)
+            });
+            return res.status(Constants.HTTP.STATUS.BAD_REQUEST).json({ message });
+        }
         return res.status(Constants.HTTP.STATUS.INTERNAL_SERVER_ERROR).json({ message: err.message });
     }
 }
