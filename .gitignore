@@ -1,3 +1,8 @@
-/semana-omnistack/semana-10.0/**/node_modules
 /semana-omnistack/semana-9.0/**/node_modules
+/semana-omnistack/semana-10.0/**/node_modules
 /semana-omnistack/semana-10.0/**/dist
+/semana-omnistack/semana-11.0/**/dist
+/semana-omnistack/semana-11.0/*/node_modules
+/semana-omnistack/semana-11.0/**/.expo-shared/
+/semana-omnistack/semana-11.0/**/.vs-code/
+
