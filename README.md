@@ -5,53 +5,13 @@ Rocketseat - Learning NodeJs, ReactJs and React Native.
 
 > #### `[WEEK] 9.0`
 
-#### BackEnd
-
-| HTTP Verb | Resources | Description |
-|-----------|----------|-------------|
-|`GET`| [`/path`](#path)  | Description |
-|`GET`| [`/path`](#path) | Description |
-
-#### FrontEnd
-
-- FrontEnd images
-
-#### App
-
-- App images
-***********
+- ##### Language used: `Javascript` on all aplications
 
 > #### `[WEEK] 10.0`
 
-#### BackEnd
-
-| HTTP Verb | Resources | Description |
-|-----------|----------|-------------|
-|`GET`| [`/path`](#path)  | Description |
-|`GET`| [`/path`](#path) | Description |
-
-#### FrontEnd
-
-- FrontEnd images
-
-#### App
-
-- App images
+- ##### Language used: `Javascript` on frontEnd and mobile app, `Typescript` on backend
 
 > #### `[WEEK] 11.0`
 
-#### BackEnd
-
-| HTTP Verb | Resources | Description |
-|-----------|----------|-------------|
-|`POST`| [`/v1/`](#path)  | Description |
-|`GET`| [`/v1/`](#path) | Description |
-
-#### FrontEnd
-
-- FrontEnd images
-
-#### App
-
-- App images
+- ##### Language used: `Javascript` on frontEnd and mobile app, `Typescript` on backend
 ***********
